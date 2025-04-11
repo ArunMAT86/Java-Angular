@@ -12,10 +12,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(unique = true,nullable = false)
+    @Column(unique = true)
     private String username;
 
-    @Column(nullable = false)
+    @Column()
     private String password;
 
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
@@ -28,6 +28,11 @@ public class User {
         this.username = username;
         this.password = password;
         this.tasks = tasks;
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public User(Integer id, String username, String password, List<Task> tasks) {
